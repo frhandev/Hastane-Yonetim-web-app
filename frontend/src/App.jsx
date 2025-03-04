@@ -1,14 +1,14 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/home";
-import Doctors from "./pages/Doctors";
+import Doctors from "./pages/Doctors.jsx";
 import Login from "./pages/Login";
-import About from "./pages/About";
 import Contact from "./pages/Contact";
 import MyProfile from "./pages/MyProfile";
 import MyAppointments from "./pages/MyAppointments";
 import Appointment from "./pages/Appointment";
-import Navbar from "./components/navbar";
+import Navbar from "./components/Navbar";
+import About from "./pages/About.jsx";
 
 function App() {
   return (
