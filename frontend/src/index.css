@@ -4,14 +4,14 @@
     --color-primary: #5f6fff
 }
 
+:root {
+    --auto-grid: repeat(auto-fill, minmax(200px, 1fr));
+}
+
 .active hr {
     @apply block
 }
 
 ::-webkit-scrollbar{
     @apply hidden
-}
-
-* {
-    scroll-behavior: smooth;
 }
