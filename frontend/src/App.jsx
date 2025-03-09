@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import Home from "./pages/home";
+import Home from "./pages/Home";
 import Doctors from "./pages/Doctors.jsx";
 import Login from "./pages/Login";
 import Contact from "./pages/Contact";
@@ -9,6 +9,7 @@ import MyAppointments from "./pages/MyAppointments";
 import Appointment from "./pages/Appointment";
 import Navbar from "./components/Navbar";
 import About from "./pages/About.jsx";
+import Footer from "./components/Footer.jsx";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/myappoinments" element={<MyAppointments />} />
         <Route path="/appoinment/:docId" element={<Appointment />} />
       </Routes>
+      <Footer />
     </div>
   );
 }
