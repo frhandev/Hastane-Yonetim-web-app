@@ -19,6 +19,11 @@ const addDoctor = async (req, res) => {
     } = req.body;
     const imageFile = req.file;
 
+    const doctorExists = await doctorModel.findOne({ email });
+    if (doctorExists) {
+      return res.json({ success: false, message: "Doctor already exists" });
+    }
+
     if (
       !name ||
       !email ||

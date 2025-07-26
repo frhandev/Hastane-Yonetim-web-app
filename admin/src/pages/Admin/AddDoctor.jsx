@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useContext, useState } from "react";
 import { assets } from "../../assets/assets";
 import { AdminContext } from "../../context/AdminContext";
@@ -195,7 +194,7 @@ const AddDoctor = () => {
                 <input
                   onChange={(e) => setAddress1(e.target.value)}
                   value={address1}
-                  className="border  border-gray-300  border-gray-300 rounded px-3 py-2"
+                  className="border border-gray-300 rounded px-3 py-2"
                   type="text"
                   placeholder="Address 1"
                   required
