@@ -97,7 +97,7 @@ const AddDoctor = () => {
               <input
                 onChange={(e) => setName(e.target.value)}
                 value={name}
-                className="border rounded px-3 py-2"
+                className="border border-gray-300  rounded px-3 py-2"
                 type="text"
                 placeholder="Name"
                 required
@@ -109,7 +109,7 @@ const AddDoctor = () => {
               <input
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
-                className="border rounded px-3 py-2"
+                className="border  border-gray-300 rounded px-3 py-2"
                 type="email"
                 placeholder="Email"
                 required
@@ -121,7 +121,7 @@ const AddDoctor = () => {
               <input
                 onChange={(e) => setPass(e.target.value)}
                 value={pass}
-                className="border rounded px-3 py-2"
+                className="border  border-gray-300 rounded px-3 py-2"
                 type="password"
                 placeholder="Password"
                 required
@@ -133,7 +133,7 @@ const AddDoctor = () => {
               <select
                 onChange={(e) => setExp(e.target.value)}
                 value={exp}
-                className="border rounded px-3 py-2"
+                className="border  border-gray-300 rounded px-3 py-2"
               >
                 <option value="1 Year">1 Year</option>
                 <option value="2 Year">2 Year</option>
@@ -153,7 +153,7 @@ const AddDoctor = () => {
               <input
                 onChange={(e) => setFees(e.target.value)}
                 value={fees}
-                className="border rounded px-3 py-2"
+                className="border  border-gray-300 rounded px-3 py-2"
                 type="number"
                 placeholder="Fees"
                 required
@@ -166,7 +166,7 @@ const AddDoctor = () => {
               <select
                 onChange={(e) => setSpeciality(e.target.value)}
                 value={speciality}
-                className="border rounded px-3 py-2"
+                className="border  border-gray-300 rounded px-3 py-2"
               >
                 <option value="General physician">General physician</option>
                 <option value="Gynecologist">Gynecologist</option>
@@ -183,7 +183,7 @@ const AddDoctor = () => {
                 <input
                   onChange={(e) => setDeg(e.target.value)}
                   value={deg}
-                  className="border rounded px-3 py-2"
+                  className="border  border-gray-300 rounded px-3 py-2"
                   type="text"
                   placeholder="Education"
                   required
@@ -195,7 +195,7 @@ const AddDoctor = () => {
                 <input
                   onChange={(e) => setAddress1(e.target.value)}
                   value={address1}
-                  className="border rounded px-3 py-2"
+                  className="border  border-gray-300  border-gray-300 rounded px-3 py-2"
                   type="text"
                   placeholder="Address 1"
                   required
@@ -203,7 +203,7 @@ const AddDoctor = () => {
                 <input
                   onChange={(e) => setAddress2(e.target.value)}
                   value={address2}
-                  className="border rounded px-3 py-2"
+                  className="border  border-gray-300 rounded px-3 py-2"
                   type="text"
                   placeholder="Address 2"
                   required
@@ -218,7 +218,7 @@ const AddDoctor = () => {
             <textarea
               onChange={(e) => setAbout(e.target.value)}
               value={about}
-              className="w-full px-4 pt-2 border rounded"
+              className="w-full px-4 pt-2 border border-gray-300  rounded"
               placeholder="Write About Doctor"
               rows={5}
               required
