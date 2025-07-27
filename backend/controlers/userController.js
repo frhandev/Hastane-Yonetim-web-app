@@ -91,7 +91,7 @@ const updateProfile = async (req, res) => {
     await userModel.findByIdAndUpdate(userId, {
       name,
       phone,
-      address: JSON.parse(address),
+      address: address ? JSON.parse(address) : { line1: "", line2: "" },
       dob,
       gender,
     });
