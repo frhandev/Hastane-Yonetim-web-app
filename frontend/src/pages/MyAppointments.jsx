@@ -49,6 +49,10 @@ const MyAppointments = () => {
     }
   };
 
+  const handlePayment = () => {
+    toast.error("Payment is disabled in demo");
+  };
+
   useEffect(() => {
     if (token) {
       getUserAppointments();
@@ -89,7 +93,10 @@ const MyAppointments = () => {
             <div></div>
             <div className=" flex flex-col gap-2 justify-end">
               {!appointment.cancelled && (
-                <button className="cursor-pointer text-sm text-stone-500 text-center sm:max-w-48 py-2 w-100 border border-gray-300 rounded hover:bg-primary hover:text-white transition-all duration-300">
+                <button
+                  onClick={handlePayment}
+                  className="cursor-pointer text-sm text-stone-500 text-center sm:max-w-48 py-2 w-100 border border-gray-300 rounded hover:bg-primary hover:text-white transition-all duration-300"
+                >
                   Pay Online
                 </button>
               )}
