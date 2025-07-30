@@ -9,9 +9,9 @@ const appointmentSchema = new mongoose.Schema({
   doctorData: { type: Object, required: true },
   amount: { type: Number, required: true },
   date: { type: Number, required: true },
-  cancelled: { type: Boolean, required: false },
-  payment: { type: Boolean, required: false },
-  isCompleted: { type: Boolean, required: false },
+  cancelled: { type: Boolean, default: false },
+  payment: { type: Boolean, default: false },
+  isCompleted: { type: Boolean, default: false },
 });
 
 const appointmentModel =
