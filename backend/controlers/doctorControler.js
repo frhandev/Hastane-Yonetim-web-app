@@ -106,6 +106,36 @@ const completeAppointment = async (req, res) => {
   }
 };
 
+const doctorDashboard = async (req, res) => {
+  try {
+    const docId = req.doctor.id;
+    const appointments = await appointmentModel.find({ docId });
+    let earnings = 0;
+
+    appointments.map((item) => {
+      if (item.isCompleted || item.payment) earnings += item.amount;
+    });
+
+    let patients = [];
+
+    appointments.map((itme) => {
+      if (!patients.includes(itme.userId)) patients.push(itme.userId);
+    });
+
+    const dashData = {
+      earnings,
+      appointments: appointments.length,
+      patients: patients.length,
+      latestAppointments: appointments.reverse().slice(0, 5),
+    };
+
+    res.json({ success: true, dashData });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
+};
+
 export {
   changeAvailability,
   doctorList,
@@ -113,4 +143,5 @@ export {
   getAllAppointments,
   cancelAppointment,
   completeAppointment,
+  doctorDashboard,
 };

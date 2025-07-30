@@ -1,6 +1,8 @@
 /* eslint-disable react-refresh/only-export-components */
 import { useState } from "react";
 import { createContext } from "react";
+import { toast } from "react-toastify";
+import axios from "axios";
 
 export const DoctorContext = createContext();
 
@@ -9,8 +11,26 @@ const DoctorContextProvider = (props) => {
   const [dToken, setDToken] = useState(
     localStorage.getItem("dToken") ? localStorage.getItem("dToken") : ""
   );
-  const value = { dToken, setDToken, backendUrl };
+  const [dashData, setDathData] = useState({});
 
+  const getDashboard = async () => {
+    try {
+      const { data } = await axios.get(backendUrl + "/api/doctor/dashboard", {
+        headers: { dToken },
+      });
+
+      if (data.success) {
+        setDathData(data.dashData);
+        console.log(data.dashData);
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
+  const value = { dToken, setDToken, backendUrl, getDashboard, dashData };
   return (
     <DoctorContext.Provider value={value}>
       {props.children}
