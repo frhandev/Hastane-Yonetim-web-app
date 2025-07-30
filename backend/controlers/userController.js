@@ -72,7 +72,7 @@ const loginUser = async (req, res) => {
 
 const getProfile = async (req, res) => {
   try {
-    const { userId } = req.body;
+    const userId = req.user.id;
     const userData = await userModel.findById(userId).select("-password");
     res.json({ success: true, userData });
   } catch (error) {
@@ -116,7 +116,8 @@ const updateProfile = async (req, res) => {
 
 const bookAppointment = async (req, res) => {
   try {
-    const { userId, docId, slotDate, slotTime } = req.body;
+    const userId = req.user.id;
+    const { docId, slotDate, slotTime } = req.body;
 
     const docData = await doctorModel.findById(docId).select("-password");
 
@@ -167,4 +168,23 @@ const bookAppointment = async (req, res) => {
   }
 };
 
-export { registerUser, loginUser, getProfile, updateProfile, bookAppointment };
+const listAppointment = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    console.log(userId);
+    const appointments = await appointmentModel.find({ userId });
+    res.json({ success: true, appointments, userId });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
+};
+
+export {
+  registerUser,
+  loginUser,
+  getProfile,
+  updateProfile,
+  bookAppointment,
+  listAppointment,
+};

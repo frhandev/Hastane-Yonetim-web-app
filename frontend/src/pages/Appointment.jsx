@@ -63,10 +63,8 @@ const Appointment = () => {
         const slotTime = formattedTime;
 
         const isSlotAvailable =
-          docInfo.slots_booked[slotDate] &&
-          docInfo.slots_booked[slotDate].includes(slotTime)
-            ? false
-            : true;
+          !docInfo?.slots_booked?.[slotDate] ||
+          !docInfo.slots_booked[slotDate].includes(slotTime);
 
         if (isSlotAvailable) {
           timeSlots.push({
@@ -98,7 +96,7 @@ const Appointment = () => {
 
       const { data } = await axios.post(
         backendUrl + "/api/user/book-appointment",
-        { docId, slotDate, slotTime },
+        { docId: docId, slotDate: slotDate, slotTime: slotTime },
         { headers: { token } }
       );
       if (data.success) {
