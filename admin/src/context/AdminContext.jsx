@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 export const AdminContext = createContext();
 
 const AdminContextProvider = (props) => {
+  const [dashData, setDathData] = useState({});
   const [doctors, setDoctors] = useState([]);
   const [aToken, setAToken] = useState(
     localStorage.getItem("aToken") ? localStorage.getItem("aToken") : ""
@@ -63,7 +64,27 @@ const AdminContextProvider = (props) => {
       toast.error(error.message);
     }
   };
+
+  const getDashboard = async () => {
+    try {
+      const { data } = await axios.get(backendUrl + "/api/admin/dashboard", {
+        headers: { aToken },
+      });
+
+      if (data.success) {
+        setDathData(data.dashData);
+        console.log(data.dashData);
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
   const value = {
+    getDashboard,
+    dashData,
     aToken,
     setAToken,
     backendUrl,
