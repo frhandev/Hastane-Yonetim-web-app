@@ -136,6 +136,74 @@ const doctorDashboard = async (req, res) => {
   }
 };
 
+const getProfile = async (req, res) => {
+  try {
+    const docId = req.doctor.id;
+    const doctorData = await doctorModel.findById(docId).select("-password");
+    res.json({ success: true, doctorData });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
+};
+
+const updateProfile = async (req, res) => {
+  try {
+    const docId = req.doctor.id;
+    const {
+      name,
+      phone,
+      address,
+      speciality,
+      degree,
+      experience,
+      about,
+      available,
+      fees,
+    } = req.body;
+    const imageFile = req.file;
+
+    if (
+      !name ||
+      !phone ||
+      !dob ||
+      !gender ||
+      !speciality ||
+      !degree ||
+      !experience ||
+      !about ||
+      !fees
+    ) {
+      res.json({ success: false, message: "Missing Details!" });
+    }
+
+    await doctorModel.findByIdAndUpdate(docId, {
+      name,
+      address: address ? JSON.parse(address) : { line1: "", line2: "" },
+      speciality,
+      degree,
+      experience,
+      about,
+      fees,
+      available,
+    });
+
+    if (imageFile) {
+      const imageUpload = await cloudinary.uploader.upload(imageFile.path, {
+        resource_type: "image",
+      });
+      const imageUrl = imageUpload.secure_url;
+
+      await doctorModel.findByIdAndUpdate(docId, { image: imageUrl });
+    }
+
+    res.json({ success: true, message: "Profile Updated!" });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
+};
+
 export {
   changeAvailability,
   doctorList,
@@ -144,4 +212,6 @@ export {
   cancelAppointment,
   completeAppointment,
   doctorDashboard,
+  getProfile,
+  updateProfile,
 };
